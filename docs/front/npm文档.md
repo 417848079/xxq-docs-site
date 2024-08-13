@@ -16,4 +16,4 @@ npm config set registry https://registry.npmmirror.com
 
 ## --force
 
-> 强制安装  更改测试
+> 强制安装
