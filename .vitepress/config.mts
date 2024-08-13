@@ -28,7 +28,7 @@ export default defineConfig({
           { text: 'Java学习笔记', link: '/docs/back/Java学习笔记' },
         ]
       },
-      { 
+      {
         text: '面试',
         items: [
           { text: '前端面试题', link: '/docs/interview-question/前端面试题' },
@@ -66,5 +66,5 @@ export default defineConfig({
       provider: 'local'
     }
   },
-  base:'/'
+  base: '/repo/'
 })
