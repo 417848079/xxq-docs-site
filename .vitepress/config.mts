@@ -66,5 +66,5 @@ export default defineConfig({
       provider: 'local'
     }
   },
-  base: '/repo/'
+  base: '/'
 })
