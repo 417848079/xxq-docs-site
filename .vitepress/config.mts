@@ -10,10 +10,10 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '文档', link: '/docs/前端/npm文档' },
-      { text: '面试', link: '/docs/面试/前端面试题' }
+      { text: '面试', link: '/docs/面试/前端面试题', activeMatch: '/面试/' }
     ],
     outlineTitle: "页面导航",
-    sidebar:sidebar,
+    sidebar: sidebar,
     // sidebar: [
     //   { // 默认规则
     //     text: '前端',
@@ -72,7 +72,15 @@ export default defineConfig({
 
     search: {
       provider: 'local'
+    },
+    lastUpdated: {
+      text: '最后更新时间',
+      formatOptions: {
+        dateStyle: 'full',
+        timeStyle: 'medium'
+      }
     }
   },
-  base: '/xxq-docs-site/'
+  base: '/xxq-docs-site/',
+  lastUpdated: true // 更新时间
 })
