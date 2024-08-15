@@ -81,7 +81,7 @@ export default defineConfig({
       }
     }
   },
-  lastUpdated: true, // 更新时间
+  lastUpdated: true,    // 更新时间
   base: '/xxq-docs-site/'
 
 })
