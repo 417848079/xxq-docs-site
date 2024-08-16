@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 import sidebar from './sidebar'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+   base: '/xxq-docs-site/',
   title: "夏小柒的文档库",
   description: "夏小柒的文档库",
 
@@ -84,10 +85,10 @@ export default defineConfig({
   },
   head: [
     [
-      'link',{ rel: 'icon', href: '/favicon.ico' }
+      'link',{ rel: 'icon', href: '/xxq-docs-site/favicon.ico' }
     ]
   ],
   lastUpdated: true,    // 更新时间
-  base: '/xxq-docs-site/'
+ 
 
 })
