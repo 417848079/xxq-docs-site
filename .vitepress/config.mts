@@ -82,6 +82,11 @@ export default defineConfig({
     },
     logo: '/logo.png',
   },
+  head: [
+    [
+      'link',{ rel: 'icon', href: '/favicon.ico' }
+    ]
+  ],
   lastUpdated: true,    // 更新时间
   base: '/xxq-docs-site/'
 
