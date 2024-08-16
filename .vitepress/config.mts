@@ -3,7 +3,7 @@ import sidebar from './sidebar'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "夏小柒的文档库",
-  description: "docs",
+  description: "夏小柒的文档库",
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -79,7 +79,8 @@ export default defineConfig({
         dateStyle: 'full',
         timeStyle: 'medium'
       }
-    }
+    },
+    logo: '/logo.png',
   },
   lastUpdated: true,    // 更新时间
   base: '/xxq-docs-site/'

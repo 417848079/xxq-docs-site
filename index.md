@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: 文档
-      link: /docs/front/npm文档
+      link: /docs/前端/npm文档
     - theme: alt
       text: docker
       link: /docs/docker/docker安装redis
