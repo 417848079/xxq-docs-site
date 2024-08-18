@@ -16,6 +16,25 @@
   touch /mydata/redis/conf/redis.conf
   ```
 
+- ## 2.redis.conf 文件
+
+  ```
+  #注释掉这部分，这是限制redis只能本地访问
+  #bind 127.0.0.1
+
+  #默认yes，开启保护模式，限制为本地访问
+  protected-mode no
+
+  #默认no，改为yes意为以守护进程方式启动，可后台运行，除非kill进程，改为yes会使配置文件方#式启动redis失败
+  daemonize no
+
+  #redis持久化（可选）
+  appendonly yes
+
+  #设置密码
+  #requirepass 123456
+  ```
+
 - ## 2. 创建 redist 容器并启动
 
   ```
@@ -44,22 +63,3 @@
   | ----------------- | -------------------------------------------------------------------------- |
   | protected-mode no | 关闭 protected-mode 模式，此时外部网络可以直接访问 (docker 貌似自动开启了) |
   | bind 0.0.0.0      | 设置所有 IP 都可以访问 (docker 貌似自动开启了)                             |
-
-- ## 4.redis.conf 文件
-
-  ```
-  #注释掉这部分，这是限制redis只能本地访问
-  bind 127.0.0.1
-
-  #默认yes，开启保护模式，限制为本地访问
-  protected-mode no
-
-  #默认no，改为yes意为以守护进程方式启动，可后台运行，除非kill进程，改为yes会使配置文件方#式启动redis失败
-  daemonize no
-
-  #redis持久化（可选）
-  appendonly yes
-
-  #设置密码
-  requirepass 123456
-  ```
