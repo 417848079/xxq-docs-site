@@ -10,6 +10,19 @@
   | float | 4 字节 | -3.403E38~3.403E38 |
   | double | 8 字节 | -1.798E308~1.798E308 |
 
+## 转义字符
+
+| 转义字符 | 含义   | Unicode 值 |
+| -------- | ------ | ---------- |
+| \b       | 退格符 | \u0008     |
+| \n       | 换行符 | \u000a     |
+| \r       | 回车符 | \u000d     |
+| \t       | 制表符 | \u0009     |
+| \f       | 换页符 | \u000c     |
+| \+"      | 引号   | \u0022     |
+| \+'      | 单引号 | \u0027     |
+| \\       | 反斜杠 | \u005c     |
+
 ## 1. contains
 
 contains 方法通常用于检查某个集合（如 List、Set）是否包含特定的元素，或者字符串是否包含特定的子字符串。
@@ -24,3 +37,63 @@ contains 方法通常用于检查某个集合（如 List、Set）是否包含特
 ## 2. equals
 
 默认情况下，Object 类的 equals() 方法是比较两个对象的引用是否相同，即只有当两个引用指向内存中的同一个对象时，equals() 方法才会返回 true。
+
+## 创建线程的三种方式
+
+- 继承 Thread 类
+  ```java
+  class MyThread1 extends Thread{
+    @Override
+    public void run() {
+        System.out.println("MyThread1");
+    }
+  }
+  ```
+- 实现 Runnable 接口
+  ```java
+  class MyThread2 implements Runnable{
+    @Override
+    public void run() {
+        System.out.println("MyThread2");
+    }
+  }
+  ```
+- 实现 Callable 接口
+  ```java
+  class MyThread3 implements Callable<Integer>{
+    @Override
+    public Integer call() throws Exception {
+        System.out.println("MyThread3");
+        return 100;
+    }
+  }
+  ```
+
+## @PathParam
+
+- #### 提取 URI 中的路径参数：
+  当客户端发起一个 RESTful 请求时，请求的 URI 可能包含一些动态的部分，这些部分被称为路径参数。@PathParam 注解允许开发者从请求的 URI 中提取这些路径参数的值，并将它们作为资源方法（即处理请求的 Java 方法）的参数。
+  ```java
+  import javax.ws.rs.GET;
+  import javax.ws.rs.Path;
+  import javax.ws.rs.PathParam;
+  import javax.ws.rs.core.Response;
+
+  // 定义书籍资源的根路径
+  @Path("/books")
+  public class BookResource {
+
+      // 使用 @Path 和 {isbn} 定义一个路径模板，其中 {isbn} 是一个路径参数
+      // 当请求匹配这个路径时，{isbn} 的值将被传递给 getBook 方法的 isbn 参数
+      @GET
+      @Path("/{isbn}")
+      public Response getBook(@PathParam("isbn") String isbn) {
+          // 在这里，我们通常会根据 isbn 参数来查询数据库或缓存以获取书籍信息
+          // 但为了简化示例，我们只是构造一个包含 isbn 的响应体
+          String bookInfo = "书籍的 ISBN 是: " + isbn;
+
+          // 返回 HTTP 200 OK 响应，包含书籍信息
+          return Response.ok(bookInfo).build();
+      }
+  }
+  ```
