@@ -64,6 +64,9 @@ JDK（Java Development Kit，Java 开发工具包）和 JRE（Java Runtime Envir
 
 - **synchronized 与 Lock 是 Java 中用于实现线程同步的两种不同机制，它们在多个方面存在显著的差异。以下是对这两种机制的详细对比：**
 
-  **1. 性质与实现方式**
-  synchronized：是 Java 的一个关键字，它可以直接应用于方法或代码块上，使用起来相对简洁。synchronized 在内部实现上，JVM 会为其维护一个锁计数器和一个指向持有锁的线程的指针。
-  Lock：是 java.util.concurrent.locks 包下的一个接口，常用的实现类有 ReentrantLock 等。Lock 的使用需要显式地获取锁和释放锁，这通常通过调用 lock()和 unlock()方法来实现。
+  ##### 1. 性质与实现方式
+
+  **synchronized：**  
+  是 Java 的一个关键字，它可以直接应用于方法或代码块上，使用起来相对简洁。synchronized 在内部实现上，JVM 会为其维护一个锁计数器和一个指向持有锁的线程的指针。  
+  **Lock：**  
+  是 java.util.concurrent.locks 包下的一个接口，常用的实现类有 ReentrantLock 等。Lock 的使用需要显式地获取锁和释放锁，这通常通过调用 lock()和 unlock()方法来实现。
