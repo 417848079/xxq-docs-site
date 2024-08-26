@@ -109,3 +109,68 @@ exprot default (context) => {
 
 }
 ```
+
+## 4.文件切片上传并并发上传（参考，需优化）
+
+- #### html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="./index.js"></script>
+  <body>
+    <input type="file" id="fileInput" />
+    <button onclick="uploadClick()">上传</button>
+  </body>
+</html>
+```
+
+```js
+// index.js
+function uploadClick() {
+  const file = document.getElementById('fileInput').files[0];
+  console.log(file);
+  // 分片5M上传
+  const size = 5 * 1024 * 1024;
+  const chunks = [];
+  let initSize = 0;
+  while (initSize < file.size) {
+    chunks.push(file.slice(initSize, initSize + size));
+    initSize += size;
+  }
+  console.log(chunks);
+  upload(chunks, 2);
+}
+
+/**
+ *
+ * @param {*} chunks
+ * @param {*} num 同时上传的分片数
+ */
+function upload(chunks, num) {
+  let index = 0;
+  for (let i = 0; i < chunks.length; i++) {
+    const formData = new FormData();
+    formData.append('file', chunks[i]);
+    formData.append('index', i);
+    if (index < num) {
+      fetch('/upload', {
+        method: 'POST',
+        body: formData,
+      })
+        .then(res => res.json())
+        .then(({ code }) => {
+          if (code === 200) {
+            index--;
+          }
+        });
+      index++;
+    }
+  }
+}
+```
