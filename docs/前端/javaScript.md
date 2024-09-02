@@ -174,3 +174,39 @@ function upload(chunks, num) {
   }
 }
 ```
+
+## 打断点调试
+
+```js
+if (!activied.length) return next();
+debugger;
+```
+
+## [Object.prototype.hasOwnProperty()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty)
+
+- #### hasOwnProperty() 方法返回一个布尔值，表示对象自有属性（而不是继承来的属性）中是否具有指定的属性。
+- 备注：在支持 Object.hasOwn 的浏览器中，建议使用 Object.hasOwn()，而非 hasOwnProperty()。
+
+```js
+const object1 = {};
+object1.property1 = 42;
+
+console.log(object1.hasOwnProperty('property1'));
+// Expected output: true
+
+console.log(object1.hasOwnProperty('toString'));
+// Expected output: false
+
+console.log(object1.hasOwnProperty('hasOwnProperty'));
+// Expected output: false
+```
+
+## 解构赋值，对全局变量作用域内赋值
+
+```js
+let name, age;
+if (true) {
+  ({ name, age } = { name: 'zhangsan', age: 18 });
+}
+console.log(name, age);
+```
