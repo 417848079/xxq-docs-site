@@ -31,7 +31,15 @@ export default defineConfig({
   server: {
     port: 3001, // 端口
     open: true, // 自动打开浏览器
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8083', // 目标服务器地址
+        changeOrigin: true, // 是否跨域
+        rewrite: path => path.replace(/^\/api/, ''), // 重写路径
+      },
+    },
   },
+  // ------------------------------------##-----------------
   build: {
     rollupOptions: {
       output: {
