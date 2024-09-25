@@ -22,14 +22,14 @@ let i = 1;
 function mouseMove() {
   box.innerHTML = i++;
 }
-function throttle(fn, t) {
+function throttle(fn, t = 1000) {
   let timer;
-  // return 返回一个匿名函数
   return function () {
+    let context = this;
+    let args = arguments;
     if (!timer) {
       timer = setTimeout(function () {
-        fn();
-        // 清空定时器 此处使用timer=null清除定时器是因为写在了定时器里面，setTimeout中是无法清除定时器的，因为定时器还在运作
+        fn.apply(context, args);
         timer = null;
       }, t);
     }
