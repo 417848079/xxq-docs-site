@@ -1,6 +1,9 @@
+# java 学习笔记
+
 ## 数据类型
 
 - java 中字符串不是基本数据类型，而是引用数据类型 ，是一个类
+
   | 类型 | 占用存储空间 | 表数范围 |
   | ------ | ------------ | ----------------------------------- |
   | byte | 1 字节 | -2<sup>7</sup> ~ 2<sup>7</sup> -1 |
@@ -41,6 +44,7 @@ contains 方法通常用于检查某个集合（如 List、Set）是否包含特
 ## 创建线程的三种方式
 
 - 继承 Thread 类
+
   ```java
   class MyThread1 extends Thread{
     @Override
@@ -49,7 +53,9 @@ contains 方法通常用于检查某个集合（如 List、Set）是否包含特
     }
   }
   ```
+
 - 实现 Runnable 接口
+
   ```java
   class MyThread2 implements Runnable{
     @Override
@@ -58,7 +64,9 @@ contains 方法通常用于检查某个集合（如 List、Set）是否包含特
     }
   }
   ```
+
 - 实现 Callable 接口
+
   ```java
   class MyThread3 implements Callable<Integer>{
     @Override
@@ -71,7 +79,7 @@ contains 方法通常用于检查某个集合（如 List、Set）是否包含特
 
 ## @PathParam (JAX-RS)
 
-- #### 提取 URI 中的路径参数：
+- #### 提取 URI 中的路径参数
 
   当客户端发起一个 RESTful 请求时，请求的 URI 可能包含一些动态的部分，这些部分被称为路径参数。@PathParam 注解允许开发者从请求的 URI 中提取这些路径参数的值，并将它们作为资源方法（即处理请求的 Java 方法）的参数。
 
@@ -102,7 +110,7 @@ contains 方法通常用于检查某个集合（如 List、Set）是否包含特
 
 ## @PathVariable
 
-- #### 动态参数绑定：@PathVariable 可以将 URL 模板中的特定部分（如/users/{userId}中的{userId}）映射到控制器方法的参数上。这样，当请求到达时，Spring MVC 会自动将 URL 中的对应部分提取出来并赋值给方法的参数。
+- #### 动态参数绑定：@PathVariable 可以将 URL 模板中的特定部分（如/users/{userId}中的{userId}）映射到控制器方法的参数上。这样，当请求到达时，Spring MVC 会自动将 URL 中的对应部分提取出来并赋值给方法的参数
 
 ```java
  @GetMapping("/users/{userId}")
