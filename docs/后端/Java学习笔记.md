@@ -110,7 +110,7 @@ contains 方法通常用于检查某个集合（如 List、Set）是否包含特
 
 ## @PathVariable
 
-- #### 动态参数绑定：@PathVariable 可以将 URL 模板中的特定部分（如/users/{userId}中的{userId}）映射到控制器方法的参数上。这样，当请求到达时，Spring MVC 会自动将 URL 中的对应部分提取出来并赋值给方法的参数
+- ### 动态参数绑定：@PathVariable 可以将 URL 模板中的特定部分（如/users/{userId}中的{userId}）映射到控制器方法的参数上。这样，当请求到达时，Spring MVC 会自动将 URL 中的对应部分提取出来并赋值给方法的参数
 
 ```java
  @GetMapping("/users/{userId}")
@@ -119,3 +119,39 @@ public User getUserInfo(@PathVariable("userId") Long userId) {
    return userService.getUserById(userId);
 }
 ```
+
+## java中interface的作用
+
+### 在Java中，interface（接口）是一种抽象类型，定义了一组没有实现的方法，它是面向对象编程中实现多态性和解耦的重要工具。interface的作用如下
+
+#### 1. 定义行为的标准：接口用于定义一组方法，类可以通过实现接口来遵循这些标准。接口只包含方法的声明，不包含方法的实现，这样实现类必须提供具体的实现
+
+#### 2. 支持多重继承：Java不支持类的多重继承，但允许一个类实现多个接口。通过接口，Java实现了某种形式的多重继承，这样可以避免多重继承中常见的“菱形继承”问题
+
+#### 3. 解耦：接口使得代码更具灵活性和可维护性。通过依赖接口而非具体实现类，程序可以更轻松地进行扩展和修改，因为可以更容易地替换或增加实现类而不影响现有代码
+
+#### 4. 多态性：接口是实现多态的重要手段之一。通过使用接口作为参数或返回类型，可以编写更通用的代码。例如，一个方法可以接收实现了某接口的任何类的对象，而不需要知道具体类是什么
+
+#### 5. 增强代码的可测试性：由于接口不依赖于具体实现，可以很方便地使用模拟对象来测试接口的实现，从而增强代码的可测试性
+
+``` java
+// 示例：
+public interface Animal {
+    void eat();
+    void sleep();
+}
+
+public class Dog implements Animal {
+    @Override
+    public void eat() {
+        System.out.println("Dog is eating");
+    }
+
+    @Override
+    public void sleep() {
+        System.out.println("Dog is sleeping");
+    }
+}
+```
+
+在这个例子中，Dog类实现了Animal接口，并提供了eat和sleep方法的具体实现。
