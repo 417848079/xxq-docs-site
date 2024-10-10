@@ -1,3 +1,5 @@
+# Vue
+
 ## 1.封装 element-plus 的 dialogt 弹窗组件
 
 ```vue
@@ -40,7 +42,7 @@ const emit = defineEmits(['update:visible', 'confirm']);
 <style lang="scss" scoped></style>
 ```
 
-- #### 使用
+- ### 使用
 
 ```vue
 const dialogVisible = ref(false);
@@ -52,7 +54,5 @@ const dialogVisible = ref(false);
     title: '提示',
     width: '400px',
   }"
->
-     自定义内容区域
-   </dialog-com>
+>自定义内容区域</dialog-com>
 ```
