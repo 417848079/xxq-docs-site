@@ -25,7 +25,7 @@ function generateSidebar(dirPath) {
         sidebar.push({
           text: file.name,
           items: subSidebar,
-          collapsed:true
+          collapsed:false
         });
       }
     } else if (file.name.endsWith('.md')) {

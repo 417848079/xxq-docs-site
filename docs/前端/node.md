@@ -1,3 +1,5 @@
+# node
+
 ## windows 快速删除 node_modules
 
 - 在 CMD 中使用 rd 命令和/s /q 参数：
@@ -7,3 +9,7 @@
 rd /s /q node_modules
 
 ```
+
+## node-gyp
+
+- Node-gyp是一个跨平台的命令行工具，专门用于编译Node.js的原生插件模块。

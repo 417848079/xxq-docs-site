@@ -1,8 +1,12 @@
+# npm文档
+
 ## 1. npm 查看源地址以及更换源地址
 
-```
-npm config get registry
-npm config set registry https://registry.npmmirror.com
+```sh
+npm config get registry # 查看源地址
+npm config set registry https://registry.npmmirror.com # 淘宝源
+npm config set registry https://registry.npmjs.org/  # 默认源
+
 
 ```
 
@@ -17,3 +21,12 @@ npm config set registry https://registry.npmmirror.com
 ## --force
 
 > 强制安装
+
+## node-gyp报错
+
+```sh
+# 尝试
+npm install --global node-gyp
+npm install --global --production windows-build-tools
+npm --python_mirror=https://registry.npmmirror.com/-/binary/python/ install --global windows-build-tools #npm install --global --production windows-build-tools安装报错时使用
+```
