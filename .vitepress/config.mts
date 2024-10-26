@@ -11,7 +11,7 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '文档', link: '/docs/前端/npm文档' },
-      { text: '面试', link: '/docs/面试/前端/前端面试题', activeMatch: '/面试/' }
+      { text: '面试', link: '/docs/面试/前端/JavaScript-代码.md', activeMatch: '/面试/' }
     ],
     outlineTitle: "页面导航",
     sidebar: sidebar,
