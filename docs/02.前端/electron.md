@@ -12,7 +12,7 @@ pnpm create @quick-start/electron@1.0.16 my-electron-app
 const NODE_ENV = process.env.NODE_ENV
 if (NODE_ENV === 'development') {
     mainWindow.webContents.openDevTools()
-  }
+}
 
 ```
 

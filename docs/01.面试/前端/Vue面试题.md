@@ -1,30 +1,66 @@
+# Vue面试题
+
 ## 1. Vue 中的 data 为什么是一个函数？
 
 > 组件实例化的时候这个函数将会被调用，返回一个对象， 计算机会给这个对象分配一个内存地址，实例化几次就分配几个内存地址，他们的地址都不一样，所以每个组件中的数据不会相互干扰，改变其中一个组件的状态，其它组件不变。  
 > 为了保证组件的独立性和可复用性，如果 data 是个函数的话，每复用一次组件就会返回新的 data，类似于给每个组件实例创 建一个私有的数据空间，保护各自的数据互不影响
+>
+## 2. Vue内置指令
+
+- v-model: 实现表单输入和应用状态之间的双向绑定。
+- v-text：更新元素的文本内容，会覆盖元素中原有的所有内容。  
+- v-html：更新元素的 innerHTML，会替换元素中原有的所有内容。  
+- v-show：根据表达式的真假值，切换元素的 display 属性。  
+- v-if：根据表达式的真假值来插入或删除元素。  
+- v-else：v-if 的“else”块。  
+- v-for：根据数据源创建多个元素或组件。  
+- v-on：绑定事件监听器。  
+- v-bind：动态地绑定一个或多个特性，或一个组件 prop 到表达式。
+
+## 3.v-model实现原理
+
+- v-model是一个语法糖
+- 原理：v-model 实际上是 v-bind:value 和 v-on:input 的语法糖。
+- 分两步骤  
+      v-bind绑定一个value属性  
+      v-on指令给当前元素绑定input事件  
+      ```html
+      <input type="text" :value="username" @input="username = $event.target.value" />
+      ```
+
+## 4. 组件上的双向绑定
+
+### v-model绑定在组件上的时候做了以下步骤
+
+ 1. 在父组件内给子组件标签添加 v-model ，其实就是给子组件绑定了 value 属性
+ 2. 子组件内使用 prop 创建 创建 value 属性可以拿到父组件传递下来的值，名字必须是 value。
+ 3. 子组件内部更改 value 的时候，必须通过 ¥emit 派发一个 input 事件，并携最新的值
+ 4. v-model 会自动监听 input 事件，把接收到的最新的值同步赋值到 v-model 绑定的变量上
+
+## 3. Vue的组件通信方式
 
 ## 2. Vue2 和 Vue3 的区别
 
-- 1.  性能提升
-      > 更快的渲染速度：Vue 3 通过改进虚拟 DOM 的算法和底层架构，实现了更快的渲染速度和更低的内存使用率。在处理大量数据或复杂组件时，Vue 3 能够提供更流畅的用户体验。
-           体积更小：通过 webpack 的 tree-shaking 功能，Vue 3 能够移除未使用的代码，从而减小最终打包的体积。这使得 Vue 3 在开发大型应用时更加高效。
-- 2.  API 设计
-      > 组合式 API（Composition API）：  
-      > Vue 3 引入了一个新的 API——组合式 API，它提供了一种更灵活的方式来组织组件的逻辑。通过组合式 API，开发者可以将组件的功能拆分成更小的、可复用的函数（称为 composables），这有助于构建大型应用并保持代码的可维护性。与 Vue 2 的选项式 API 相比，组合式 API 使得代码更加简洁和易于理解。  
-      > 生命周期钩子函数：  
-      > Vue 3 中的生命周期钩子函数有所变化，如 beforeCreate 和 created 被 setup 函数替代，beforeMount 和 mounted 等钩子函数则需要在 onBeforeMount 和 onMounted 等函数中显式调用。此外，Vue 3 还增加了一些新的钩子函数，如 onRenderTracked 和 onRenderTriggered。
+- 2.1. 性能提升
+    >更快的渲染速度：Vue 3 通过改进虚拟 DOM 的算法和底层架构，实现了更快的渲染速度和更低的内存使用率。在处理大量数据或复杂组件时，Vue 3 能够提供更流畅的用户体验。  
+      体积更小：通过 webpack 的 tree-shaking 功能，Vue 3 能够移除未使用的代码，从而减小最终打包的体积。这使得 Vue 3 在开发大型应用时更加高效。  
+- 2.2. API 设计
+    > 组合式 API（Composition API）：  
+    > Vue 3 引入了一个新的 API——组合式 API，它提供了一种更灵活的方式来组织组件的逻辑。通过组合式 API，开发者可以将组件的功能拆分成更小的、可复用的函数（称为 composables），这有助于构建大型应用并保持代码的可维护性。与 Vue 2 的选项式 API 相比，组合式 API 使得代码更加简洁和易于理解。  
+    > 生命周期钩子函数：  
+    > Vue 3 中的生命周期钩子函数有所变化，如 beforeCreate 和 created 被 setup 函数替代，beforeMount 和 mounted 等钩子函数则需要在 onBeforeMount 和 onMounted 等函数中显式调用。此外，Vue 3 还增加了一些新的钩子函数，如 onRenderTracked 和 onRenderTriggered。
 
-  - 3. 响应式系统
+  - 2.3. 响应式系统
 
        > Proxy vs. Object.defineProperty：
        > Vue 3 的响应式系统是基于 ES6 的 Proxy API 实现的，而 Vue 2 则是基于 Object.defineProperty。Proxy API 能够提供更全面的属性监听（包括属性的添加、删除以及数组内部的变化），从而解决了 Vue 2 中响应式系统的一些限制。
        > 响应式 API 的改进：  
        > Vue 3 提供了一系列新的响应式 API，如 reactive、ref、computed 等，这些 API 使得开发者能够更灵活地处理响应式数据。
 
-  - 4. TypeScript 支持
+  - 2.4. TypeScript 支持
        > 更好的 TypeScript 集成：Vue 3 从一开始就把 TypeScript 作为一等公民来考虑，这意味着 Vue 3 与 TypeScript 的集成更加自然，为开发大型应用提供了更好的支持。Vue 3 的 API 和内部实现都充分考虑了 TypeScript 的类型安全特性。
 
-- 5. 新特性
+- 2.5. 新特性
      > 多个根节点（Fragments）：  
      > Vue 3 支持组件拥有多个根节点，这在 Vue 2 中是不被支持的。这使得 Vue 3 的组件模板更加灵活。  
      > Teleport：  
@@ -32,12 +68,14 @@
      > 自定义渲染器（createRenderer）：  
      > Vue 3 提供了 createRenderer 函数，允许开发者构建自定义渲染器，从而将 Vue 的开发模型扩展到其他平台（如 canvas）。
 
-## Vue3 的生命周期有哪些
+## 3. Vue3 的生命周期有哪些
 
 Vue 3 引入了 Composition API，这带来了编写组件的新方式，但同时也保留了 Options API。无论是使用哪种 API，Vue 3 的组件生命周期都是相似的，但有一些细微的差别和新增的钩子。
 
-- #### setup()：
+- ### setup()
+
   这是 Vue3 中引入的组合式 API 的一个核心部分，它在组件创建之前执行，用于替代 Vue2 中的 beforeCreate 和 created 钩子。在 setup 中，可以定义响应式数据、计算属性、方法等，并且可以访问到组件的 props 和 context。
+
 - #### Options API 生命周期钩子
 
   在 Options API 中，生命周期钩子被定义在组件的 `options` 对象中。以下是 Vue 3 中 Options API 的主要生命周期钩子：
@@ -88,11 +126,12 @@ Vue 3 引入了 Composition API，这带来了编写组件的新方式，但同�
 
   ## Vuex 是什么
 
-  - ##### vuex 是一个状态管理工具，集中式的管理所有组件的状态数据。统一的去管理组件，将组件的状态抽象为一个 store 文件，通过 commit 方法触发 mutation 里的函数来改变组件属性。
+  - ##### vuex 是一个状态管理工具，集中式的管理所有组件的状态数据。统一的去管理组件，将组件的状态抽象为一个 store 文件，通过 commit 方法触发 mutation 里的函数来改变组件属性
 
   - ##### 五个属性 state（存储） getters（获取） mutations（同步操作 /this.$store.commit(“方法名”,数据)/mapMutations） actions（异步操作 /this.$store.dispatch(“方法名”,数据)/mapActions） modules（放多个 vuex）
 
   - #### Vuex 的优势
+
     **集中式存储管理：**  
     Vuex 将应用的所有组件的状态集中存储和管理，便于维护和调试。  
     **可预测的状态变化：**  
