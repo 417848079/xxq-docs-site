@@ -79,3 +79,9 @@ git checkout -b 分支名
     test(api)：增加API测试用例，确保接口稳定性。
     refactor(auth)：重构认证模块代码，提高可读性。
     chore(deps)：升级项目依赖库至最新版本。
+
+## 7.git merge 合并
+
+ ```sh
+ git merge --abort # 取消合并
+ ```

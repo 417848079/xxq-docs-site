@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 import sidebar from './sidebar'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-   base: '/xxq-docs-site/',
+  base: '/xxq-docs-site/',
   title: "夏小柒的文档库",
   description: "夏小柒的文档库",
 
@@ -10,8 +10,8 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: '首页', link: '/' },
-      { text: '文档', link: '/docs/前端/npm文档' },
-      { text: '面试', link: '/docs/面试/前端/JavaScript-代码.md', activeMatch: '/面试/' }
+      { text: '文档', link: '/docs/02.前端/npm文档' },
+      { text: '面试', link: '/docs/面试/02.前端/JavaScript-代码.md', activeMatch: '/面试/' }
     ],
     outlineTitle: "页面导航",
     sidebar: sidebar,
@@ -85,10 +85,10 @@ export default defineConfig({
   },
   head: [
     [
-      'link',{ rel: 'icon', href: '/xxq-docs-site/favicon.ico' }
+      'link', { rel: 'icon', href: '/xxq-docs-site/favicon.ico' }
     ]
   ],
   lastUpdated: true,    // 更新时间
- 
+
 
 })
