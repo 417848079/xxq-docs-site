@@ -7,7 +7,7 @@
 > 这是一个由 pnpm 导致的问题，起初没有使用含有 sqllite3 的模块，构建是没有问题的，使用了 sqllite3 之后，在 electron-builder 进行构建时显示 xxx\pnpm.cjs 不是一个合法的 Win32 应用。
 pnpm.cjs 文件上方有一个 shebang （#!开头 ）:
 
-```cjs
+```txt
 #!/usr/bin/env node
 ```
 
