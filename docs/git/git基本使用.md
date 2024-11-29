@@ -5,6 +5,8 @@
 ```sh
 # 生成公钥
 ssh-keygen -t rsa -C "<EMAIL>"
+# 复制公钥
+cat ~/.ssh/id_rsa.pub
 ```
 
 ## 2.查看用户名和邮箱
