@@ -1,6 +1,61 @@
 # centos7
 
-## 1. 安装 docker
+## 1.安装ssh
+
+```bash
+yum install -y openssh-server
+```
+
+## 2. 重启服务
+
+```bash
+systemctl restart sshd # 重启ssh服务
+sudo systemctl restart network # 重启网络服务
+
+```
+
+
+## 2.CentOS 7 ping不通 报错：name or service not known
+
+```bash
+vi /etc/sysconfig/network-scripts/ifcfg-ens33
+ONBOOT=yes
+
+```
+
+## 2.ifcfg-ens33 配置文件
+
+```bash
+cd /etc/sysconfig/network-scripts 
+
+
+TYPE=Ethernet # 网络类型为以太网
+BOOTPROTO=none #ip获取方式，DHCP为自动获取，静态IP为none和static
+NAME=ens33 #网卡名称
+DEVICE=ens33 # 网卡设备名，设备名一定要跟文件名一致
+ONBOOT=yes # 该网卡是否随网络服务启动
+IPADDR=10.0.0.11 # 该网卡ip地址
+NETMASK=255.255.255.0 # 子网掩码
+GATEWAY=10.0.0.254     # 网关
+DNS1=8.8.8.8 # 8.8.8.8为Google提供的免费DNS服务器的IP地址
+DNS2=8.8.4.4 # 8.8.4.4为Google提供的免费DNS服务器的IP地址
+```
+
+## 2. 配置 yum 阿里源
+
+```bash
+# 备份CentOS 7系统自带yum源配置文件
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+
+curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+# 新镜像源
+清除缓存：yum clean all
+生成缓存：yum makecache
+
+
+```
+
+## 3. 安装 docker
 
 - ### 1. 环境准备
 
@@ -63,7 +118,14 @@
 
     ```bash
       sudo yum makecache fast
-      sudo yum install docker-ce docker-ce-cli containerd.io
+      # sudo yum install docker-ce docker-ce-cli containerd.io
+
+      # docker-ce  Docker-CE是Docker社区版（Community Edition）的简称
+      # docker-ce-cli  Docker-CE 客户端，用于与 Docker CE 进行交互
+      # containerd.io  containerd 是一个独立的容器运行时，它被设计为在主机上运行。
+      # docker-buildx-plugin  Docker Buildx 插件，用于扩展 Docker Build 功能
+      # docker-compose-plugin  Docker Compose 插件，用于扩展 Docker Compose 功能
+      sudo yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin 
     ```
 
     **如果要安装特定版本的 Docker CE，可以使用 yum list docker-ce --showduplicates | sort -r 查看所有可用版本，然后使用 yum install docker-ce-<VERSION_STRING>进行安装。**
@@ -99,15 +161,3 @@
     sudo systemctl daemon-reload
     sudo systemctl restart docker
     ```
-
-## 2. 配置 yum 阿里源
-
-```bash
-curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
-# 新镜像源
-清除缓存：yum clean all
-生成缓存：yum makecache
-
-# 备份CentOS 7系统自带yum源配置文件
-mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
-```
