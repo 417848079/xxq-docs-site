@@ -12,20 +12,19 @@
 const fs = require('fs');
 const path = require('path');
 function generateSidebar(dirPath) {
-  console.log(dirPath, 'dirPath');
-
   const sidebar = [];
   const files = fs.readdirSync(dirPath, { withFileTypes: true });
-
+  const noCollapsed = ["01.面试","02.前端","系统"]
   files.forEach(file => {
     if (file.isDirectory()) {
+      console.log( file.name);
       // 递归处理子目录
       const subSidebar = generateSidebar(path.join(dirPath, file.name));
       if (subSidebar.length > 0) {
         sidebar.push({
           text: file.name,
           items: subSidebar,
-          collapsed:false
+          collapsed: !noCollapsed.includes(file.name)
         });
       }
     } else if (file.name.endsWith('.md')) {

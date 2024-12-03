@@ -28,6 +28,7 @@ docker container ls # 查看正在运行的容器
 docker container ls -a #查看所有容器
 docker inspect 容器名称 #查看容器详细信息
 dockr exec -it 容器名称 /bin/bash #进入容器
+docker logs 25939a4c9560  #查看容器日志
 docker stop 容器名称 #停止容器
 
 docker rm 容器名称 #删除容器

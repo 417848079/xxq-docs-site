@@ -14,8 +14,7 @@ sudo systemctl restart network # 重启网络服务
 
 ```
 
-
-## 2.CentOS 7 ping不通 报错：name or service not known
+## 3.CentOS 7 ping不通 报错：name or service not known
 
 ```bash
 vi /etc/sysconfig/network-scripts/ifcfg-ens33
@@ -161,3 +160,18 @@ curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-
     sudo systemctl daemon-reload
     sudo systemctl restart docker
     ```
+
+## 4.nacos
+
+```bash
+cd /app/nacos./bin
+./startup.sh -m standalone # 单机模式启动
+
+jps # 查看进程
+
+tail -f /app/nacos/logs/start.out # 查看日志
+
+
+
+
+```
