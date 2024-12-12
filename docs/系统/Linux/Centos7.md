@@ -1,6 +1,11 @@
 # centos7
 
-## 1.安装ssh
+## 1.账号
+
+- 12 主机 root 密码：000000
+- 99 主机 root 密码：root
+
+## 1.安装 ssh
 
 ```bash
 yum install -y openssh-server
@@ -14,7 +19,7 @@ sudo systemctl restart network # 重启网络服务
 
 ```
 
-## 3.CentOS 7 ping不通 报错：name or service not known
+## 3.CentOS 7 ping 不通 报错：name or service not known
 
 ```bash
 vi /etc/sysconfig/network-scripts/ifcfg-ens33
@@ -25,8 +30,7 @@ ONBOOT=yes
 ## 2.ifcfg-ens33 配置文件
 
 ```bash
-cd /etc/sysconfig/network-scripts 
-
+cd /etc/sysconfig/network-scripts
 
 TYPE=Ethernet # 网络类型为以太网
 BOOTPROTO=none #ip获取方式，DHCP为自动获取，静态IP为none和static
@@ -34,10 +38,33 @@ NAME=ens33 #网卡名称
 DEVICE=ens33 # 网卡设备名，设备名一定要跟文件名一致
 ONBOOT=yes # 该网卡是否随网络服务启动
 IPADDR=10.0.0.11 # 该网卡ip地址
-NETMASK=255.255.255.0 # 子网掩码
+PREFIX=24 # 子网掩码
+#NETMASK=255.255.255.0 # 子网掩码
 GATEWAY=10.0.0.254     # 网关
 DNS1=8.8.8.8 # 8.8.8.8为Google提供的免费DNS服务器的IP地址
 DNS2=8.8.4.4 # 8.8.4.4为Google提供的免费DNS服务器的IP地址
+
+# 以下为标准配置
+TYPE=Ethernet
+BOOTPROTO=none
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=yes
+NAME=eth0
+DEVICE=eth0
+ONBOOT=yes
+IPADDR=10.0.0.12
+PREFIX=24
+GATEWAY=10.0.0.2
+DNS1=8.8.8.8
+DNS2=8.8.4.4
+DNS3=114.114.114.114
+DNS4=10.0.0.2
+```
+
+## 3.无网络 BROADCAST,MULTICAST,UP,LOWER_UP
+
+```bash
+ifup ens33
 ```
 
 ## 2. 配置 yum 阿里源
@@ -124,7 +151,7 @@ curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-
       # containerd.io  containerd 是一个独立的容器运行时，它被设计为在主机上运行。
       # docker-buildx-plugin  Docker Buildx 插件，用于扩展 Docker Build 功能
       # docker-compose-plugin  Docker Compose 插件，用于扩展 Docker Compose 功能
-      sudo yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin 
+      sudo yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
     ```
 
     **如果要安装特定版本的 Docker CE，可以使用 yum list docker-ce --showduplicates | sort -r 查看所有可用版本，然后使用 yum install docker-ce-<VERSION_STRING>进行安装。**
@@ -156,7 +183,7 @@ curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-
     }
     EOF
 
-    
+
     sudo systemctl daemon-reload
     sudo systemctl restart docker
     ```
