@@ -243,3 +243,6 @@ Vue 3 引入了 Composition API，这带来了编写组件的新方式，但同�
   app.mount('#app');
   // 现在，MyComponent可以在App组件及其所有子组件的模板中使用了
   ```
+
+## 什么是虚拟dom
+ **本质就是一个js对象，所以能实现跨平台**

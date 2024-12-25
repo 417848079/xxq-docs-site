@@ -40,7 +40,7 @@ box.addEventListener('mousemove', throttle(mouseMove, 500));
 
 ## 3. 状态仓库持久化
 
-- #### vuex
+- ### vuex
 
 ```js
 // store文件
@@ -112,7 +112,7 @@ exprot default (context) => {
 
 ## 4.文件切片上传并并发上传（参考，需优化）
 
-- #### html
+- ### html
 
 ```html
 <!DOCTYPE html>
@@ -184,7 +184,8 @@ debugger;
 
 ## [Object.prototype.hasOwnProperty()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty)
 
-- #### hasOwnProperty() 方法返回一个布尔值，表示对象自有属性（而不是继承来的属性）中是否具有指定的属性。
+- #### hasOwnProperty() 方法返回一个布尔值，表示对象自有属性（而不是继承来的属性）中是否具有指定的属性
+
 - 备注：在支持 Object.hasOwn 的浏览器中，建议使用 Object.hasOwn()，而非 hasOwnProperty()。
 
 ```js
