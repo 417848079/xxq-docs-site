@@ -23,7 +23,7 @@ C:\Users\jcstudio.tech\AppData\Roaming\npm\node_modules\pnpm\bin\pnpm.cjs
 
 >打开该文件：
 
-```cjs
+```txt
 #!/usr/bin/env node
 const [major, minor] = process.version.slice(1).split('.')
 const COMPATIBILITY_PAGE = `Visit https://r.pnpm.io/comp to see the list of past pnpm versions with respective Node.js version support.`
