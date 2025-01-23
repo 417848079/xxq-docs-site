@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress'
 import sidebar from './sidebar'
+import mdItCustomAttrs from 'markdown-it-custom-attrs'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: '/xxq-docs-site/',
@@ -15,60 +16,8 @@ export default defineConfig({
     ],
     outlineTitle: "页面导航",
     sidebar: sidebar,
-    // sidebar: [
-    //   { // 默认规则
-    //     text: '前端',
-    //     collapsed: false,
-    //     items: [
-    //       { text: 'npm文档', link: '/docs/front/npm文档' },
-    //     ]
-    //   },
-    //   {
-    //     text: '后端',
-    //     collapsed: false,
-    //     items: [
-    //       { text: 'Java学习笔记', link: '/docs/back/Java学习笔记' },
-    //     ]
-    //   },
-    //   {
-    //     text: '面试',
-    //     items: [
-    //       { text: '前端面试题', link: '/docs/interview-question/前端面试题' },
-    //       { text: 'JAVA面试题', link: '/docs/interview-question/JAVA面试题' },
-    //     ]
-    //   },
-    //   { // 默认规则
-    //     text: '学习笔记',
-    //     items: [
-    //       { text: 'Java学习笔记', link: '/docs/back/Java学习笔记' },
-    //       { text: 'k8s-1.27.x', link: '/docs/k8s/k8s-1.27.x.md' }
-    //     ]
-    //   },
-    //   { 
-    //     text: 'git',
-    //     items: [
-    //       { text: 'git基本使用', link: '/docs/git/git基本使用' },
-    //     ]
-    //   },
-    //   {
-    //     text: 'docker',
-    //     items: [
-    //       { text: 'docker基础', link: '/docs/docker/docker基础' },
-    //       { text: 'docker安装redis', link: '/docs/docker/docker安装redis' },
-    //       { text: 'k8s-1.27.x', link: '/docs/k8s/k8s-1.27.x.md' },
-    //       { text: 'Docker问题记录', link: '/docs/docker/Docker问题记录' },
-    //     ]
-    //   },
-    //   {
-    //     text: "问题记录",
-    //     items: [
-    //       { text: '需要知道', link: '/docs/study/需要知道' },
-    //     ]
-    //   }
-    // ],
-
     socialLinks: [
-      // { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+
     ],
 
     search: {
@@ -83,12 +32,25 @@ export default defineConfig({
     },
     logo: '/logo.png',
   },
+
+  // 添加 head 配置来引入 Fancybox 相关文件
   head: [
+    ['link', { rel: 'icon', href: '/xxq-docs-site/favicon.ico' }],
     [
-      'link', { rel: 'icon', href: '/xxq-docs-site/favicon.ico' }
-    ]
+      "link",
+      { rel: "stylesheet", href: "/xxq-docs-site/static/css/fancybox.css" },
+    ],
+    ["script", { src: "/xxq-docs-site/static/js/fancybox.umd.js" }],
   ],
+
   lastUpdated: true,    // 更新时间
+  markdown: {
+    config: (md) => {
+      md.use(mdItCustomAttrs, 'image', {
+        'data-fancybox': "gallery"
+      })
+    }
+  }
 
 
 })
