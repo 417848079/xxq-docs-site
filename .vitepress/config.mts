@@ -38,9 +38,9 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/xxq-docs-site/favicon.ico' }],
     [
       "link",
-      { rel: "stylesheet", href: "/xxq-docs-site/static/css/fancybox.css" },
+      { rel: "stylesheet", href: "/xxq-docs-site/css/fancybox.css" },
     ],
-    ["script", { src: "/xxq-docs-site/static/js/fancybox.umd.js" }],
+    ["script", { src: "/xxq-docs-site/js/fancybox.umd.js" }],
   ],
 
   lastUpdated: true,    // 更新时间
