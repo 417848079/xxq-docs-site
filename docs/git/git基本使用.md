@@ -54,6 +54,18 @@ git checkout 分支名
 git checkout -b 分支名
 ```
 
+## 7.删除分支
+
+```sh
+#删除本地分支
+git branch -d 分支名
+
+# 删除远程分支
+git push origin --delete 分支名
+```
+
+>删除分支后，可以通过 Git 日志或 reflog 找回丢失的提交（如果有必要）
+
 ## 6.git commit 提交规范
 
 - ### 常见的commit type类型包括
