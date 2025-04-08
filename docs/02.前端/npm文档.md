@@ -10,6 +10,10 @@ npm config set registry https://registry.npmjs.org/  # 默认源
 
 ```
 
+## 打开 npm 配置  
+
+`npm config edit`
+
 ## npm i --legacy-peer-deps
 
 > 是在使用 npm （Node Package Manager）安装包时的一个命令选项。  
