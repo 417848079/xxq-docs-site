@@ -91,3 +91,44 @@ window.addEventListener("scroll", () => {
 - canvas
 - puppeteer (无头浏览器)
 - html2canvas
+
+## 7.H5移动端适配问题
+
+- ### 方案
+
+  - 根据不同端来开发不同页面（成本最高）
+  - 根据不同端来加载不同的css样式（可取）
+  - 根据响应式，来运行不同的样式规则（**常用**）
+  - style预处理器
+
+- ### 考虑的问题
+
+  - 1.设置视窗，通过meta标签设置viewport  
+
+    ```html
+    <meta name="viewport"content="width=device-width, initial-scale=1.0">
+    ```
+
+  - 2.掌握媒体查询
+
+    ```css
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      /*针对小屏幕的样式*/
+    }
+    ```
+
+  - 3.flex弹性布局
+    - 主轴方向：flex-deirection: row;
+    - 交叉轴方向：flex-wrap: wrap;
+    - 子元素对齐：justify-content: space-between; align-items: center; align-content: flex-start;
+    - 弹性属性：flex: 1; flex-grow: 1; flex-shrink: 1; flex-basis: auto;
+  - 图片响应式  
+
+    ```html
+    <picture>
+      <source srcset="img.jpg" media="(min-width: 400px)">
+      <source srcset="img_small.jpg" media="(min-width: 800px)">
+      <img src="img.jpg" alt="图片">
+    </picture>
+    ```
+  
