@@ -1,3 +1,5 @@
+# js代码面试题
+
 ## 1.数组统计，设置一个通用方法完成以下功能
 
 - 1. 统计数组中每个性别的人数
@@ -129,4 +131,20 @@ changeLight(); // 开始改变灯光
 <script src="./index.js"></script>
 </body>
 </html>
+```
+
+## 3. 计算-23的二进制数
+
+```javascript
+function toTwosComplement(num, bits = 8) {
+  // 处理负数补码计算
+  if (num < 0) {
+    return ((1 << bits) + num).toString(2).slice(-bits);
+  }
+  // 处理正数补零
+  return num.toString(2).padStart(bits, '0');
+}
+
+// 示例用法
+console.log(toTwosComplement(-23, 8)); // 输出：11101001
 ```
