@@ -20,6 +20,9 @@ docker pull mysql:8.0
 
 ```bash
 docker run -p 3306:3306 --name mysql8 --privileged=true -v /app/docker/mysql/log:/var/log/mysql -v /app/docker/mysql/data:/var/lib/mysql -v /app/docker/mysql/conf:/etc/mysql/conf.d -v /app/docker/mysql/mysql-files:/var/lib/mysql-files -e MYSQL_ROOT_PASSWORD=root -d mysql:8
+
+# windows
+docker run -p 3306:3306 --name mysql8 --privileged=true -v d:/app/docker/mysql/log:/var/log/mysql -v d:/app/docker/mysql/data:/var/lib/mysql -v d:/app/docker/mysql/conf:/etc/mysql/conf.d -v d:/app/docker/mysql/mysql-files:/var/lib/mysql-files -e MYSQL_ROOT_PASSWORD=root -d mysql:8
 ```
 
 - ### 3.开启远程访问

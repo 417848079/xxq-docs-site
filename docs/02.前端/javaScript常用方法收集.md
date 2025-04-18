@@ -1,4 +1,4 @@
-# javascript不常用方法收集
+# javaScript常用方法收集
 
 ## url.endsWith('.mp4')
 
@@ -50,3 +50,19 @@ console.log(null || 0 || ''); // ""
 ## instanceof 运算符
 
   用于检测构造函数的 prototype 属性是否出现在某个实例对象的原型链上。
+
+## split('')
+
+  将字符串拆分为字符数组（如 ["h", "e", "l", "l", "o"]）
+
+## reverse()
+
+reverse() 反转数组顺序（如 ["o", "l", "l", "e", "h"]）
+
+## join('')
+
+ 将数组合并为字符串
+
+## charAt(n)
+
+  返回字符串中指定索引（下标）处的字符，如果参数 n 不在 0 与 string.length-1 之间，则该方法返回空字符串。

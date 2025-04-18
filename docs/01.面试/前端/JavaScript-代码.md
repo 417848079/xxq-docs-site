@@ -148,3 +148,18 @@ function toTwosComplement(num, bits = 8) {
 // 示例用法
 console.log(toTwosComplement(-23, 8)); // 输出：11101001
 ```
+
+## 4.将Hello World!字符串反转
+
+```javascript
+function reverseString(str) {
+  return str.split('').reverse().join('');
+}
+
+// 或者
+function reverseString(str) {
+  return  [...str].reverse().join('');
+}
+```
+
+
