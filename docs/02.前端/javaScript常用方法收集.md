@@ -66,3 +66,9 @@ reverse() 反转数组顺序（如 ["o", "l", "l", "e", "h"]）
 ## charAt(n)
 
   返回字符串中指定索引（下标）处的字符，如果参数 n 不在 0 与 string.length-1 之间，则该方法返回空字符串。
+
+## withResolvers语法糖
+
+```js
+const {promise, resolve, reject} = Promise.withResolver();
+```

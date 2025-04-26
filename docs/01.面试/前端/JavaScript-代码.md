@@ -162,4 +162,30 @@ function reverseString(str) {
 }
 ```
 
+## 5.让下面的代码成立
 
+```javascript
+/// 让下面的代码成立
+// var[a,b] ={
+//   a:1,
+//   b:2
+// }
+// console.log(a,b);
+
+// 解决方案：
+//生成器
+// Object.prototype[Symbol.iterator] = function* () {
+//   yield* Object.values(this);
+// }
+
+//迭代器
+Object.prototype[Symbol.iterator] = function() {
+  return Object.values(this)[Symbol.iterator]();
+}
+var[a,b] ={
+  a:1,
+  b:2
+}
+console.log(a,b);
+
+```
