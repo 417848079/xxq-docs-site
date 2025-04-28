@@ -23,3 +23,14 @@
 ## backface-visibility
 
  是一个CSS属性，它决定了当一个元素的背面朝向观察者时，这个背面是否是可见的。这个属性主要用于3D转换场景，当元素在3D空间中旋转而可能展示其背面时，可以通过这个属性来控制背面是否显示。
+
+## 媒体查询适配特定DPI
+
+```css
+/* 适配 DPR ≥ 2 的设备 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .high-dpi-element {
+    border: 1rpx solid #ccc; /* 更细的边框 */
+  }
+}
+```
