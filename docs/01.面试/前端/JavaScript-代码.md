@@ -189,3 +189,145 @@ var[a,b] ={
 console.log(a,b);
 
 ```
+
+## 6、调用main方法后，下面的输出是什么？
+
+```javascript
+function main(){
+  console.log(test())
+}
+
+function test(){
+  try{
+    let a= null
+    a=a.charAt(1)
+    console.log(1)
+    return 4
+  }catch(e){
+    console.log(2)
+    return 5
+  }finally{
+    console.log(3);
+    return 6
+  }
+}
+
+main() // 输出：2 3 6
+// 如果finally块中有return语句，则finally块中的return语句会覆盖try-catch块中的return语句
+```
+
+## 7、调用main方法后，以下代码的输出值是什么
+
+```javascript
+function main() {
+  const promise = new Promise((resolve, reject) => {
+    console.log(1)
+    resolve()
+    console.log(2)
+  })
+
+  promise.then(() => {
+    console.log(3)
+  })
+
+  console.log(4)
+}
+main()
+// 答：1243
+```
+
+## 8、请分别写出判断null和undefined的表达式或函数
+
+```javascript
+// 使用 Object.is() 组合
+if (Object.is(value, null) || Object.is(value, undefined)) {
+  // 精确判断
+}
+// void 0 安全判断（避免全局 undefined 被篡改）
+if (value === void 0) {
+  // void 0 始终返回 undefined，安全判断
+}
+// typeof 判断（兼容性最佳）
+if (typeof value === 'undefined') {
+  // 当变量未定义或值为 undefined 时触发
+}
+```
+
+## 9、请使用es5，es6规范写出单例模式（singleton）
+
+### JavaScript 单例模式
+
+- 单例模式是一种常见的设计模式，它确保一个类只有一个实例，并提供一个全局访问点。单例模式在减少内存开销和避免全局变量冲突方面具有重要意义
+
+```javascript
+class SingletonApple {
+  constructor(name, creator, products) {
+    if (!SingletonApple.instance) {
+      this.name = name;
+      this.creator = creator;
+      this.products = products;
+    }
+    SingletonApple.instance = this; // 关键：绑定实例
+    // return SingletonApple.instance;
+  }
+
+  static getInstance(name, creator, products) {
+    if (!SingletonApple.instance) {
+      SingletonApple.instance = new SingletonApple(name, creator, products);
+    }
+    return SingletonApple.instance;
+  }
+}
+
+let appleCompany = SingletonApple.getInstance('苹果公司', '乔布斯', ['iPhone', 'iMac', 'iPad', 'iPod']);
+console.log(appleCompany); 
+let copyApple = SingletonApple.getInstance('苹果公司', '阿辉', ['iPhone', 'iMac', 'iPad', 'iPod']);
+console.log(copyApple);
+console.log(appleCompany === copyApple); // true
+```
+
+## 10、使用冒泡排序算法对数组 let arr = [3,9,-1,10,20]进行排序（从小到大）
+
+```javascript
+function bubbleSort(arr) {
+  const len = arr.length;
+  for (let i = 0; i < len - 1; i++) {
+    for (let j = 0; j < len - 1 - i; j++) { 
+      if (arr[j] > arr[j + 1]) { // 如果前一个元素比后一个大，交换它们
+        // [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+        let a = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = a;
+      }
+    }
+  }
+  return arr;
+}
+
+const arr = [3, 9, -1, 10, 20];
+let result = bubbleSort(arr);
+console.log(result);
+```
+
+## 11、使用二分查找法搜索数组 let arr = [6,12,33,87,90,97,108,561]中108所在的位置（采用递归的方式）
+
+```javascript
+function binarySearchRecursive(arr, target, left = 0, right = arr.length - 1) {
+  if (left > right) {
+    return -1; // 基线条件：未找到
+  }
+  const mid = Math.floor((left + right) / 2);
+  if (arr[mid] === target) {
+    return mid; // 基线条件：找到目标
+  } else if (arr[mid] < target) {
+    return binarySearchRecursive(arr, target, mid + 1, right) //递归右半部分
+  } else {
+    return binarySearchRecursive(arr, target, left, mid - 1) //递归左半部分
+  }
+}
+
+const arr = [6, 12, 33, 87, 90, 97, 108, 561];
+const target = 108;
+const result = binarySearchRecursive(arr, target);
+console.log(result);
+```
