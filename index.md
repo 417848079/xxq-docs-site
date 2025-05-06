@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "夏小柒的"
   text: "文档库"
-  tagline: 前端 后端 面试题
+  tagline: 前端 后端 面试题 版本1.0.0
   actions:
     - theme: brand
       text: 文档
