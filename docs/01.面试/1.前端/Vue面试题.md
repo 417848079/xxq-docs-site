@@ -1,68 +1,76 @@
-# Vue面试题
+# Vue 面试题
 
 ## 1. Vue 中的 data 为什么是一个函数？
-  
+
 > 为了保证组件的独立性和可复用性，如果 data 是个函数的话，每复用一次组件就会返回新的 data，类似于给每个组件实例创 建一个私有的数据空间，保护各自的数据互不影响
->
-## 2. Vue内置指令
+
+## 2. Vue 内置指令
 
 - v-model: 实现表单输入和应用状态之间的双向绑定。
-- v-text：更新元素的文本内容，会覆盖元素中原有的所有内容。  
-- v-html：更新元素的 innerHTML，会替换元素中原有的所有内容。  
-- v-show：根据表达式的真假值，切换元素的 display 属性。  
-- v-if：根据表达式的真假值来插入或删除元素。  
-- v-else：v-if 的“else”块。  
-- v-for：根据数据源创建多个元素或组件。  
-- v-on：绑定事件监听器。  
+- v-text：更新元素的文本内容，会覆盖元素中原有的所有内容。
+- v-html：更新元素的 innerHTML，会替换元素中原有的所有内容。
+- v-show：根据表达式的真假值，切换元素的 display 属性。
+- v-if：根据表达式的真假值来插入或删除元素。
+- v-else：v-if 的“else”块。
+- v-for：根据数据源创建多个元素或组件。
+- v-on：绑定事件监听器。
 - v-bind：动态地绑定一个或多个特性，或一个组件 prop 到表达式。
 
-## 3.v-model实现原理
+## 3.v-model 实现原理
 
-- v-model是一个语法糖
+- v-model 是一个语法糖
 - 原理：v-model 实际上是 v-bind:value 和 v-on:input 的语法糖。
 - 分两步骤  
-      v-bind绑定一个value属性  
-      v-on指令给当前元素绑定input事件  
+   v-bind 绑定一个 value 属性  
+   v-on 指令给当前元素绑定 input 事件
 
-    ```html
-    <input type="text" :value="username" @input="username = $event.target.value" />
-    ```
+  ```html
+  <input type="text" :value="username" @input="username = $event.target.value" />
+  ```
 
-## 4. computed和watch的区别
+## 4. computed 和 watch 的区别
 
-|特性|计算属性(Computed)|监听器(Watch)|
-|-----|---|---|
-|用途|基于依赖数据计算新值|观察特定数据变化并执行副作用操作|
-|缓存|有缓存，依赖不变时直接返回缓存结果|无缓存，每次变化都会执行|
-|异步|不支持异步操作|支持异步操作|
-|返回值|必须返回一个值|不需要返回值|
-|多依赖|可以依赖多个数据|通常观察单个数据|
-|初始化执行|默认立即执行|默认不立即执行(可配置)|
+| 特性       | 计算属性(Computed)                 | 监听器(Watch)                    |
+| ---------- | ---------------------------------- | -------------------------------- |
+| 用途       | 基于依赖数据计算新值               | 观察特定数据变化并执行副作用操作 |
+| 缓存       | 有缓存，依赖不变时直接返回缓存结果 | 无缓存，每次变化都会执行         |
+| 异步       | 不支持异步操作                     | 支持异步操作                     |
+| 返回值     | 必须返回一个值                     | 不需要返回值                     |
+| 多依赖     | 可以依赖多个数据                   | 通常观察单个数据                 |
+| 初始化执行 | 默认立即执行                       | 默认不立即执行(可配置)           |
 
-## 5.v-if和v-for一起使用的弊端和解决办法
+## 5.v-if 和 v-for 一起使用的弊端和解决办法
 
 - 弊端：
   - 1.每次渲染都会进行条件判断，可能导致性能问题。
-  - 2.如果v-if和v-for一起使用，v-for的优先级高于v-if。
+  - 2.如果 v-if 和 v-for 一起使用，v-for 的优先级高于 v-if。
 - 解决办法：
-  - 1.将v-if放在外层元素上，使用 template 标签包裹，避免每次渲染都进行条件判断。
-  - 2.使用v-show替代v-if，v-show不会每次渲染都进行条件判断，只会根据条件切换元素的display属性。
-  - 3.使用计算属性或方法来过滤数据，然后再使用v-for进行渲染。
+  - 1.将 v-if 放在外层元素上，使用 template 标签包裹，避免每次渲染都进行条件判断。
+  - 2.使用 v-show 替代 v-if，v-show 不会每次渲染都进行条件判断，只会根据条件切换元素的 display 属性。
+  - 3.使用计算属性或方法来过滤数据，然后再使用 v-for 进行渲染。
+
+## 6.为什么 v-for 需要加 key
+
+- ### 1.高效的 DOM 更新
+  - key 作为唯一标识：key 帮助 Vue 识别哪些元素是新增的、删除的或只是被重新排序的，从而最小化 DOM 操作。
+- ### 2.维持组件状态
+  - 没有 key 时，Vue 会采用"就地复用"策略，可能导致元素状态（如表单输入值、焦点状态等）在重新渲染时出现意外保留。
+- ###  3.动画效果正确性
 
 ## 5. 组件上的双向绑定
 
-### v-model绑定在组件上的时候做了以下步骤
+### v-model 绑定在组件上的时候做了以下步骤
 
- 1. 在父组件内给子组件标签添加 v-model ，其实就是给子组件绑定了 value 属性
- 2. 子组件内使用 prop 创建 创建 value 属性可以拿到父组件传递下来的值，名字必须是 value。
- 3. 子组件内部更改 value 的时候，必须通过 ¥emit 派发一个 input 事件，并携最新的值
- 4. v-model 会自动监听 input 事件，把接收到的最新的值同步赋值到 v-model 绑定的变量上
+1.  在父组件内给子组件标签添加 v-model ，其实就是给子组件绑定了 value 属性
+2.  子组件内使用 prop 创建 创建 value 属性可以拿到父组件传递下来的值，名字必须是 value。
+3.  子组件内部更改 value 的时候，必须通过 ¥emit 派发一个 input 事件，并携最新的值
+4.  v-model 会自动监听 input 事件，把接收到的最新的值同步赋值到 v-model 绑定的变量上
 
 ## 5. 父组件调用子组件方法(Vue3)
 
-- 子组件defineExpose暴露方法 父组件通过ref调用子组件方法
+- 子组件 defineExpose 暴露方法 父组件通过 ref 调用子组件方法
 
-## 6. Vue的组件通信方式(组件传参)
+## 6. Vue 的组件通信方式(组件传参)
 
 - ### 6-1. props (父传子)
 
@@ -74,17 +82,17 @@
 
 - ### 6-2. $emit (子传父)
 
-  > #### P子组件通过触发自定义事件向父组件传递数据或信息
+  > #### P 子组件通过触发自定义事件向父组件传递数据或信息
 
   - **优点：** 实现了子组件向父组件的数据传递，增强了组件间的交互性
   - **缺点：** 相对于 Props，事件传递数据的方式稍微复杂一些，需要定义事件和监听事件
 
 - ### 6-3. v-model（父子组件数据双向绑定）
-  
-  > 在父组件中，使用v-model指令将数据和子组件进行绑定。在子组件中，使用defineModel（Vue 3.4+）或同时使用defineProps和defineEmits来接收父组件传递的值和触发更新事件
+
+  > 在父组件中，使用 v-model 指令将数据和子组件进行绑定。在子组件中，使用 defineModel（Vue 3.4+）或同时使用 defineProps 和 defineEmits 来接收父组件传递的值和触发更新事件
 
 - ### 6.4. Provide/Inject（跨代传递）
-  
+
   > **是 Vue 3 中一种高级的组件间传值方式，它允许祖先组件向后代组件注入数据，而不需要显式地将数据传递给中间组件**
 
   - **用法：** 在祖先组件中，通过 provide 函数提供数据。在后代组件中，通过 inject 选项接收数据。
@@ -120,7 +128,7 @@
 - ### v-bind="$attrs"
 
   v-bind="$attrs" 是一个 Vue 指令，用于将父组件传递给子组件的非 prop 属性 (即普通 HTML 属性和自定义属性，但不包括 class 和 style) 绑定到子组件的根 DOM 元素上。
-使用 $attrs 变量可以获得父组件传递下来的所有属性 (除了通过 props 定义的属性之外)，然后一次性绑定到内部元素上。  
+  使用 $attrs 变量可以获得父组件传递下来的所有属性 (除了通过 props 定义的属性之外)，然后一次性绑定到内部元素上。
 
 - ### v-on="$listeners"
 
@@ -133,31 +141,32 @@
 ## 2. Vue2 和 Vue3 的区别
 
 - 2.1. 性能提升
-    >更快的渲染速度：Vue 3 通过改进虚拟 DOM 的算法和底层架构，实现了更快的渲染速度和更低的内存使用率。在处理大量数据或复杂组件时，Vue 3 能够提供更流畅的用户体验。  
-      体积更小：通过 webpack 的 tree-shaking 功能，Vue 3 能够移除未使用的代码，从而减小最终打包的体积。这使得 Vue 3 在开发大型应用时更加高效。  
+  > 更快的渲染速度：Vue 3 通过改进虚拟 DOM 的算法和底层架构，实现了更快的渲染速度和更低的内存使用率。在处理大量数据或复杂组件时，Vue 3 能够提供更流畅的用户体验。
+      体积更小：通过 webpack 的 tree-shaking 功能，Vue 3 能够移除未使用的代码，从而减小最终打包的体积。这使得 Vue 3 在开发大型应用时更加高效。
 - 2.2. API 设计
-    > 组合式 API（Composition API）：  
-    > Vue 3 引入了一个新的 API——组合式 API，它提供了一种更灵活的方式来组织组件的逻辑。通过组合式 API，开发者可以将组件的功能拆分成更小的、可复用的函数（称为 composables），这有助于构建大型应用并保持代码的可维护性。与 Vue 2 的选项式 API 相比，组合式 API 使得代码更加简洁和易于理解。  
-    > 生命周期钩子函数：  
-    > Vue 3 中的生命周期钩子函数有所变化，如 beforeCreate 和 created 被 setup 函数替代，beforeMount 和 mounted 等钩子函数则需要在 onBeforeMount 和 onMounted 等函数中显式调用。此外，Vue 3 还增加了一些新的钩子函数，如 onRenderTracked 和 onRenderTriggered。
+
+  > 组合式 API（Composition API）：  
+  > Vue 3 引入了一个新的 API——组合式 API，它提供了一种更灵活的方式来组织组件的逻辑。通过组合式 API，开发者可以将组件的功能拆分成更小的、可复用的函数（称为 composables），这有助于构建大型应用并保持代码的可维护性。与 Vue 2 的选项式 API 相比，组合式 API 使得代码更加简洁和易于理解。  
+  > 生命周期钩子函数：  
+  > Vue 3 中的生命周期钩子函数有所变化，如 beforeCreate 和 created 被 setup 函数替代，beforeMount 和 mounted 等钩子函数则需要在 onBeforeMount 和 onMounted 等函数中显式调用。此外，Vue 3 还增加了一些新的钩子函数，如 onRenderTracked 和 onRenderTriggered。
 
   - 2.3. 响应式系统
 
-       > Proxy vs. Object.defineProperty：
-       > Vue 3 的响应式系统是基于 ES6 的 Proxy API 实现的，而 Vue 2 则是基于 Object.defineProperty。Proxy API 能够提供更全面的属性监听（包括属性的添加、删除以及数组内部的变化），从而解决了 Vue 2 中响应式系统的一些限制。
-       > 响应式 API 的改进：  
-       > Vue 3 提供了一系列新的响应式 API，如 reactive、ref、computed 等，这些 API 使得开发者能够更灵活地处理响应式数据。
+    > Proxy vs. Object.defineProperty：
+    > Vue 3 的响应式系统是基于 ES6 的 Proxy API 实现的，而 Vue 2 则是基于 Object.defineProperty。Proxy API 能够提供更全面的属性监听（包括属性的添加、删除以及数组内部的变化），从而解决了 Vue 2 中响应式系统的一些限制。
+    > 响应式 API 的改进：  
+    > Vue 3 提供了一系列新的响应式 API，如 reactive、ref、computed 等，这些 API 使得开发者能够更灵活地处理响应式数据。
 
   - 2.4. TypeScript 支持
-       > 更好的 TypeScript 集成：Vue 3 从一开始就把 TypeScript 作为一等公民来考虑，这意味着 Vue 3 与 TypeScript 的集成更加自然，为开发大型应用提供了更好的支持。Vue 3 的 API 和内部实现都充分考虑了 TypeScript 的类型安全特性。
+    > 更好的 TypeScript 集成：Vue 3 从一开始就把 TypeScript 作为一等公民来考虑，这意味着 Vue 3 与 TypeScript 的集成更加自然，为开发大型应用提供了更好的支持。Vue 3 的 API 和内部实现都充分考虑了 TypeScript 的类型安全特性。
 
 - 2.5. 新特性
-     > 多个根节点（Fragments）：  
-     > Vue 3 支持组件拥有多个根节点，这在 Vue 2 中是不被支持的。这使得 Vue 3 的组件模板更加灵活。  
-     > Teleport：  
-     > Vue 3 引入了 Teleport 功能，它允许开发者将模板中的某个部分渲染到 DOM 中的其他位置，这在处理模态框、悬浮框等 UI 元素时非常有用。  
-     > 自定义渲染器（createRenderer）：  
-     > Vue 3 提供了 createRenderer 函数，允许开发者构建自定义渲染器，从而将 Vue 的开发模型扩展到其他平台（如 canvas）。
+  > 多个根节点（Fragments）：  
+  > Vue 3 支持组件拥有多个根节点，这在 Vue 2 中是不被支持的。这使得 Vue 3 的组件模板更加灵活。  
+  > Teleport：  
+  > Vue 3 引入了 Teleport 功能，它允许开发者将模板中的某个部分渲染到 DOM 中的其他位置，这在处理模态框、悬浮框等 UI 元素时非常有用。  
+  > 自定义渲染器（createRenderer）：  
+  > Vue 3 提供了 createRenderer 函数，允许开发者构建自定义渲染器，从而将 Vue 的开发模型扩展到其他平台（如 canvas）。
 
 ## 3. Vue3 的生命周期有哪些
 
@@ -265,6 +274,6 @@ Vue 3 引入了 Composition API，这带来了编写组件的新方式，但同�
   // 现在，MyComponent可以在App组件及其所有子组件的模板中使用了
   ```
 
-## 什么是虚拟dom
+## 什么是虚拟 dom
 
- **本质就是一个js对象，所以能实现跨平台**
+**本质就是一个 js 对象，所以能实现跨平台**
