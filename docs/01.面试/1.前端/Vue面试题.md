@@ -55,7 +55,7 @@
   - key 作为唯一标识：key 帮助 Vue 识别哪些元素是新增的、删除的或只是被重新排序的，从而最小化 DOM 操作。
 - ### 2.维持组件状态
   - 没有 key 时，Vue 会采用"就地复用"策略，可能导致元素状态（如表单输入值、焦点状态等）在重新渲染时出现意外保留。
-- ###  3.动画效果正确性
+- ### 3.动画效果正确性
 
 ## 5. 组件上的双向绑定
 
@@ -140,34 +140,27 @@
 
 ## 2. Vue2 和 Vue3 的区别
 
-- 2.1. 性能提升
-  > 更快的渲染速度：Vue 3 通过改进虚拟 DOM 的算法和底层架构，实现了更快的渲染速度和更低的内存使用率。在处理大量数据或复杂组件时，Vue 3 能够提供更流畅的用户体验。
-      体积更小：通过 webpack 的 tree-shaking 功能，Vue 3 能够移除未使用的代码，从而减小最终打包的体积。这使得 Vue 3 在开发大型应用时更加高效。
-- 2.2. API 设计
+- 1. **架构设计**
 
-  > 组合式 API（Composition API）：  
-  > Vue 3 引入了一个新的 API——组合式 API，它提供了一种更灵活的方式来组织组件的逻辑。通过组合式 API，开发者可以将组件的功能拆分成更小的、可复用的函数（称为 composables），这有助于构建大型应用并保持代码的可维护性。与 Vue 2 的选项式 API 相比，组合式 API 使得代码更加简洁和易于理解。  
-  > 生命周期钩子函数：  
-  > Vue 3 中的生命周期钩子函数有所变化，如 beforeCreate 和 created 被 setup 函数替代，beforeMount 和 mounted 等钩子函数则需要在 onBeforeMount 和 onMounted 等函数中显式调用。此外，Vue 3 还增加了一些新的钩子函数，如 onRenderTracked 和 onRenderTriggered。
+  - Vue2: 使用 Options API（选项式 API）
+  - Vue3: 引入 Composition API（组合式 API），同时兼容 Options API
 
-  - 2.3. 响应式系统
-
-    > Proxy vs. Object.defineProperty：
-    > Vue 3 的响应式系统是基于 ES6 的 Proxy API 实现的，而 Vue 2 则是基于 Object.defineProperty。Proxy API 能够提供更全面的属性监听（包括属性的添加、删除以及数组内部的变化），从而解决了 Vue 2 中响应式系统的一些限制。
-    > 响应式 API 的改进：  
-    > Vue 3 提供了一系列新的响应式 API，如 reactive、ref、computed 等，这些 API 使得开发者能够更灵活地处理响应式数据。
-
-  - 2.4. TypeScript 支持
-    > 更好的 TypeScript 集成：Vue 3 从一开始就把 TypeScript 作为一等公民来考虑，这意味着 Vue 3 与 TypeScript 的集成更加自然，为开发大型应用提供了更好的支持。Vue 3 的 API 和内部实现都充分考虑了 TypeScript 的类型安全特性。
-
-- 2.5. 新特性
-  > 多个根节点（Fragments）：  
-  > Vue 3 支持组件拥有多个根节点，这在 Vue 2 中是不被支持的。这使得 Vue 3 的组件模板更加灵活。  
-  > Teleport：  
-  > Vue 3 引入了 Teleport 功能，它允许开发者将模板中的某个部分渲染到 DOM 中的其他位置，这在处理模态框、悬浮框等 UI 元素时非常有用。  
-  > 自定义渲染器（createRenderer）：  
-  > Vue 3 提供了 createRenderer 函数，允许开发者构建自定义渲染器，从而将 Vue 的开发模型扩展到其他平台（如 canvas）。
-
+- 2. **响应式原理**
+  - Vue2: 使用 Object.defineProperty 实现响应式
+    - 无法检测对象属性的添加/删除
+    - 对数组的变化需要通过特殊方法（如 push, pop 等）触发更新
+  - Vue3: 使用 Proxy 实现响应式
+    - 可以检测到所有属性的变化，包括新增/删除属性
+    - 更好的数组变化检测
+- 3. **性能优化**   
+Vue3 相比 Vue2 有显著的性能提升：  
+  - 更小的打包体积 
+  - 更快的渲染速度
+  - 更高效的内存使用
+  - 优化了虚拟 DOM 的 diff 算法
+  - 引入了新的性能优化特性，如 Fragment、Teleport、Suspense 等
+  - Vue2: 对性能进行了优化，如虚拟 DOM 缓存、异步更新队列等
+  - Vue3: 引入了新的性能优化特性，如 Fragment、Teleport、Suspense 等
 ## 3. Vue3 的生命周期有哪些
 
 Vue 3 引入了 Composition API，这带来了编写组件的新方式，但同时也保留了 Options API。无论是使用哪种 API，Vue 3 的组件生命周期都是相似的，但有一些细微的差别和新增的钩子。
