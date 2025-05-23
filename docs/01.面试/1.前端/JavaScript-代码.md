@@ -331,3 +331,22 @@ const target = 108;
 const result = binarySearchRecursive(arr, target);
 console.log(result);
 ```
+
+## 12.js模糊搜索
+
+```javascript
+function searchIncomplete(keys, target) {
+  const searchDigits = target.toString().split(''); // 拆分搜索值为各位数组
+  return keys.filter(key => {
+    const keyDigits = key.toString().split(''); // 拆分目标值为各位数组
+    // 检查搜索值的每一位是否都存在于目标值中
+    return searchDigits.every(digit => keyDigits.includes(digit));
+  });
+}
+
+// 测试数据
+const data = [123, 13, 31, 113, 321,456];
+const input = 13; // 搜索值 "13" 拆分为 ["1", "3"]
+const result = searchIncomplete(data, input);
+console.log(result); // 输出: [123, 13, 31, 113, 321]
+```

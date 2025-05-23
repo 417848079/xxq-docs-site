@@ -1,4 +1,4 @@
-## docker 安装 redis
+# docker 安装 redis
 
 - ## 1.注意
 
@@ -6,7 +6,7 @@
   - b. 之所以要先创建 , 是因为 Redis 本身容器只存在 /etc/redis 目录 , 本身就不创建 redis.conf 文件
   - c. 当服务器和容器都不存在 redis.conf 文件时, 执行启动命令的时候 docker 会将 redis.conf 作为目录创建 , 这并不是我们想要的结果 。
 
-  ```
+  ```sh
   # 创建目录
   mkdir -p /mydata/redis/conf
   mkdir -p /mydata/redis/data
@@ -18,7 +18,7 @@
 
 - ## 2.redis.conf 文件
 
-  ```
+  ```conf
   #注释掉这部分，这是限制redis只能本地访问
   #bind 127.0.0.1
 
