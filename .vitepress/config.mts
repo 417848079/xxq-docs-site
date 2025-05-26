@@ -1,8 +1,16 @@
 import { defineConfig } from "vitepress";
 import sidebar from "./sidebar";
 import mdItCustomAttrs from "markdown-it-custom-attrs";
+import { withMermaid } from 'vitepress-plugin-mermaid';
+
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default withMermaid(defineConfig({
+  vite: {
+    optimizeDeps: {
+      include: ['dayjs', 'mermaid'],
+      exclude: ['dayjs/min']
+    }
+  },
   base: "/xxq-docs-site/",
   title: "夏小柒的文档库",
   description: "夏小柒的文档库",
@@ -71,7 +79,13 @@ export default defineConfig({
     config: (md) => {
       md.use(mdItCustomAttrs, "image", {
         "data-fancybox": "gallery",
-      });
+      })
     },
   },
-});
+  mermaid: {
+    theme: 'default',
+    gantt: { barHeight: 130 },
+    flowchart: { useMaxWidth: false }, // 允许自由缩放
+    // 其他 Mermaid 配置...
+  }
+}));
