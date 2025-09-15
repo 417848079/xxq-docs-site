@@ -56,3 +56,46 @@ const dialogVisible = ref(false);
   }"
 >自定义内容区域</dialog-com>
 ```
+
+## 2.封装弹窗示例
+
+```vue3
+<template>
+  <div>
+    <n-modal :show="showModal" style="box-shadow: none" @update:show="$emit('update:showModal', $event)" >
+      <n-card style="width: 800px" :bordered="false" size="huge" role="dialog" aria-modal="true">
+        <div class="title" style="font-size: 20px">签到信息</div>
+        </n-card>
+    </n-modal>
+  </div>
+</template>
+
+<script lang="ts" setup>
+defineProps({
+  showModal: {
+    type: Boolean,
+    default: false,
+  },
+})
+const emit = defineEmits(['update:showModal']);
+
+</script>
+
+<style lang="less" scoped>
+
+</style>
+```
+
+- ### 使用
+
+```vue3
+<take-a-number  v-model:showModal="showModalNumber"   />
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+import TakeANumber from './TakeANumber.vue';
+
+const showModalNumber = ref(false);
+
+</script>
+```
