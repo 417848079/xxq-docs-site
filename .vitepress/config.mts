@@ -16,6 +16,13 @@ export default withMermaid(defineConfig({
   description: "夏小柒的文档库",
 
   themeConfig: {
+    docFooter: {
+      prev: '上一页',
+      next: '下一页'
+    },
+    darkModeSwitchLabel: '外观',
+    returnToTopLabel: '返回顶部',
+    sidebarMenuLabel: '菜单',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "首页", link: "/" },
@@ -56,6 +63,26 @@ export default withMermaid(defineConfig({
 
     search: {
       provider: "local",
+      options: {
+        translations:{
+          button: { buttonText: "搜索笔记" },
+          modal:{
+            displayDetails: "显示详细信息",
+            resetButtonTitle: "清除查询条件",
+            backButtonTitle: "返回",
+            noResultsText: "没有搜索到结果",
+            footer: {
+              selectText: "选择",
+              selectKeyAriaLabel: "选择",
+              navigateText: "导航",
+              navigateUpKeyAriaLabel: "向上导航",
+              navigateDownKeyAriaLabel: "向下导航",
+              closeText: "关闭",
+              closeKeyAriaLabel: "关闭",
+            },
+          },
+        }
+      },
     },
     lastUpdated: {
       text: "最后更新时间",
@@ -64,6 +91,8 @@ export default withMermaid(defineConfig({
         timeStyle: "medium",
       },
     },
+
+
     logo: "/logo.png",
   },
 

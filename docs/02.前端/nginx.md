@@ -56,3 +56,49 @@ location /storage/ {
       }
     }
 ```
+
+## Vue Router 用了 History 模式并配置了baseUrl，Nginx的配置
+
+```nginx
+server {
+    listen       80;
+    server_name localhost;      # 匹配你的域名/localhost
+    root /usr/share/nginx/html;
+
+    # 关键配置：History 模式 fallback，所有请求转发到 index.html
+    location /test/ {
+          # 指向 Vue 打包后的 dist 目录
+        index /test/index.html;           # 访问目录时默认返回 index.html
+        try_files $uri $uri/ /test/index.html;  # 核心指令，解决 /login 404
+    }
+
+    #error_page  404              /404.html;
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+```
+
+- ### dockerFile文件
+
+ ```dockerfile
+ # 使用nginx作为基础镜像
+FROM nginx:stable-alpine
+
+# 复制本地已构建的dist目录到nginx的html目录
+COPY ./dist-prod /usr/share/nginx/html/test/
+
+# 可选：复制自定义nginx配置（处理前端路由等）
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# 暴露80端口
+EXPOSE 80
+
+# 启动nginx服务
+CMD ["nginx", "-g", "daemon off;"]
+
+ ```

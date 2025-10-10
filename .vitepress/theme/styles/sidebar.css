@@ -1,0 +1,155 @@
+/* 侧边栏整体样式 */
+.sidebar {
+  display: none;
+  --sidebar-bg: var(--vp-c-bg-alt);
+  --sidebar-hover: rgba(125, 125, 125, 0.1);
+  --sidebar-active: var(--vp-c-primary-light);
+  --sidebar-text: var(--vp-c-text-2);
+  --sidebar-text-active: var(--vp-c-primary);
+  --sidebar-border: var(--vp-c-divider);
+}
+
+/* 深色模式适配 */
+.dark .sidebar {
+  --sidebar-bg: var(--vp-c-bg-alt);
+  --sidebar-hover: rgba(255, 255, 255, 0.05);
+}
+
+/* 侧边栏容器 */
+.VPSidebar {
+  border-right: 1px solid var(--sidebar-border);
+  transition: all 0.3s ease;
+}
+
+/* 侧边栏菜单容器 */
+.VPSidebarItem {
+  transition: all 0.2s ease;
+}
+
+/* 菜单项链接样式 */
+.VPSidebarItem-link {
+  padding: 0.5rem 1rem;
+  margin: 0.15rem 0.5rem;
+  border-radius: 6px;
+  color: var(--sidebar-text);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 菜单项悬停效果 */
+.VPSidebarItem-link:hover {
+  background-color: var(--sidebar-hover);
+  color: var(--sidebar-text-active);
+  transform: translateX(3px);
+}
+
+/* 活跃菜单项样式 */
+.VPSidebarItem-link.active {
+  color: var(--sidebar-text-active);
+  font-weight: 600;
+  background-color: var(--sidebar-hover);
+}
+
+/* 活跃菜单项左侧指示器 */
+.VPSidebarItem-link.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background-color: var(--sidebar-active);
+  border-radius: 0 3px 3px 0;
+}
+
+/* 子菜单缩进和样式 */
+.VPSidebarGroup .VPSidebarItem {
+  padding-left: 1rem;
+}
+
+/* 折叠/展开图标样式 */
+.VPSidebarItem-collapse {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.VPSidebarItem-collapse:hover {
+  background-color: var(--sidebar-hover);
+}
+
+/* 折叠/展开动画 */
+.VPSidebarGroup.children-open .VPSidebarItem-collapse {
+  transform: rotate(90deg);
+}
+
+.VPSidebarGroup-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.VPSidebarGroup.children-open .VPSidebarGroup-content {
+  max-height: 2000px; /* 足够大的值来容纳内容 */
+}
+
+/* 侧边栏标题样式 */
+.VPSidebarGroup-title {
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 响应式调整 */
+@media (max-width: 960px) {
+  .VPSidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--sidebar-border);
+  }
+  
+  .VPSidebarItem-link {
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+/* 侧边栏滚动条美化 */
+.VPSidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.VPSidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.VPSidebar::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 20px;
+}
+
+.VPSidebar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(156, 163, 175, 0.8);
+}
+
+/* 侧边栏分隔线 */
+.sidebar-divider {
+  height: 1px;
+  background-color: var(--sidebar-border);
+  margin: 0.8rem 0;
+}
+
+/* 侧边栏标题组 */
+.sidebar-heading {
+  padding: 1rem 1rem 0.5rem;
+  font-size: 1.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--vp-c-text-3);
+  font-weight: 600;
+}

@@ -55,4 +55,4 @@ C:\Users\X1290\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-co
 
   ## 开发flutter用到的插件（Android studio）
   - flutter
-  - jsonToDart
+  - jsonToDart  用于将json转换为dart类
