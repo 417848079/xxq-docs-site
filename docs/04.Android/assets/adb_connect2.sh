@@ -1,0 +1,39 @@
+#!/bin/bash
+# 适配Mac的Android无线调试脚本（单IP变量版）
+# ===================== 仅需修改这里 =====================
+target_ip="192.168.3.165"  # 在这里修改目标IP，全程生效
+# ========================================================
+
+# 脚本标题与环境提示
+clear
+echo "======================================="
+echo "     Android 无线调试配对连接脚本（Mac版）"
+echo "     当前目标IP: $target_ip（修改请编辑脚本第4行）"  # 引用IP变量
+echo "======================================="
+echo ""
+echo "请确保手机已完成以下操作："
+echo "1. 开启开发者选项 → 无线调试"
+echo "2. 点击「使用配对码配对设备」（获取配对端口和配对码）"
+echo ""
+
+
+echo "请在手机无线调试界面查看「通过无线连接调试」下方的端口号"
+read -p "请输入连接端口(Connect Port): " connect_port
+if [ -z "$connect_port" ]; then
+    echo "错误: 连接端口不能为空！"
+    exit 1
+fi
+
+# 4. 执行ADB连接命令（引用IP变量）
+echo ""
+echo "正在执行连接命令：adb connect $target_ip:$connect_port"  # 变量替换IP
+adb connect "$target_ip:$connect_port"
+
+# 5. 完成提示
+echo ""
+echo "操作完成！"
+echo "若连接成功，Android Studio将自动检测到设备；若失败，请检查："
+echo "- 手机与电脑是否在同一WiFi（当前IP: $target_ip）"  # 提示当前IP
+echo "- 防火墙是否阻止ADB连接"
+echo "- ADB是否已添加到系统环境变量"
+read -p "按任意键退出..."  # 修正：仅保留提示信息，去掉多余文字
