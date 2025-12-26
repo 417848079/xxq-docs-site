@@ -59,7 +59,7 @@ const dialogVisible = ref(false);
 
 ## 2.封装弹窗示例
 
-```vue3
+```vue
 <template>
   <div>
     <n-modal :show="showModal" style="box-shadow: none" @update:show="$emit('update:showModal', $event)" >
@@ -88,7 +88,7 @@ const emit = defineEmits(['update:showModal']);
 
 - ### 使用
 
-```vue3
+```vue
 <take-a-number  v-model:showModal="showModalNumber"   />
 
 <script lang="ts" setup>
