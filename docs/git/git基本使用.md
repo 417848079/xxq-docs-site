@@ -99,3 +99,16 @@ git push origin --delete 分支名
  ```sh
  git merge --abort # 取消合并
  ```
+
+## 8.git submodule 子模块
+
+ ```sh
+ #TODO：子模块如何使用
+ 项目clone
+公共模块一同clone
+git clone url --recurse-submodules
+clone后再pull公共模块
+git clone url
+git submodule init
+git submodule update
+ ``
