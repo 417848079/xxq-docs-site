@@ -41,7 +41,9 @@ C:\Users\X1290\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-co
    将下载的 jar 文件放入随机命名的子文件夹中（通常是一个哈希值命名的文件夹）
 
 - #### 2. 配置镜像源（长期有效）
+
   在项目根目录的 build.gradle 或 settings.gradle 中添加：
+
   ```groovy
   pluginManagement {
     repositories {
@@ -53,6 +55,11 @@ C:\Users\X1290\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-co
   }
   ```
 
-  ## 开发flutter用到的插件（Android studio）
-  - flutter
-  - jsonToDart  用于将json转换为dart类
+## 开发flutter用到的插件（Android studio）
+
+- flutter
+- jsonToDart 用于将json转换为dart类
+
+## Android Studio快捷键
+
+- `option+enter`：查找并执行任何操作｜快速包快速包裹（光标在组件上）
