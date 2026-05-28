@@ -4,6 +4,7 @@ import mdItCustomAttrs from "markdown-it-custom-attrs";
 import { withMermaid } from 'vitepress-plugin-mermaid';
 
 // https://vitepress.dev/reference/site-config
+const baseUrl = '/xxq-docs-site/'
 export default withMermaid(defineConfig({
   vite: {
     optimizeDeps: {
@@ -11,7 +12,8 @@ export default withMermaid(defineConfig({
       exclude: ['dayjs/min']
     }
   },
-  base: "/xxq-docs-site/",
+  // base: "/xxq-docs-site/",
+  base: baseUrl,  // 为了在flutter项目中展示，需要设置为./  可注释
   title: "夏小柒的文档库",
   description: "夏小柒的文档库",
 
@@ -98,9 +100,9 @@ export default withMermaid(defineConfig({
 
   // 添加 head 配置来引入 Fancybox 相关文件
   head: [
-    ["link", { rel: "icon", href: "/xxq-docs-site/favicon.ico" }],
-    ["link", { rel: "stylesheet", href: "/xxq-docs-site/css/fancybox.css" }],
-    ["script", { src: "/xxq-docs-site/js/fancybox.umd.js" }],
+    ["link", { rel: "icon", href: baseUrl + "favicon.ico" }],
+    ["link", { rel: "stylesheet", href: baseUrl + "css/fancybox.css" }],
+    ["script", { src: baseUrl + "js/fancybox.umd.js" }],
   ],
 
   lastUpdated: true, // 更新时间
