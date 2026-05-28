@@ -6,6 +6,7 @@ import { withMermaid } from 'vitepress-plugin-mermaid';
 // https://vitepress.dev/reference/site-config
 const baseUrl = '/xxq-docs-site/'
 export default withMermaid(defineConfig({
+  lang: "zh-CN",
   vite: {
     optimizeDeps: {
       include: ['dayjs', 'mermaid'],

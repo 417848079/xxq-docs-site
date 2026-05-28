@@ -34,3 +34,20 @@
 
   --vp-button-brand-active-border: #F6CEEC;
 } */
+
+body {
+  /* 完美顺序：中文优先 → 英文优先 → 表情兜底 → 系统兜底 */
+  font-family:
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei",
+    -apple-system, BlinkMacSystemFont,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Noto Color Emoji",
+    sans-serif;
+
+  /* 文字平滑，必加 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
